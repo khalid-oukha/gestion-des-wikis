@@ -117,6 +117,7 @@
 
     </section>
     
+        <?php include "../app/View/includes/footer.php"?>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

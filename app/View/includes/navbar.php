@@ -1,4 +1,3 @@
-
 <nav class="bg-primary-100 border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="<?= URL_DIR ?>home" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -8,7 +7,9 @@
         <div class="flex text-white items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button type="button" class="flex text-sm py-2 px-2 dark:bg-primary-100 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <i class="fa-solid fa-user"></i> </button>
+                <i class="fa-solid fa-user"></i>
+            </button>
+            
             <div>
                 <!-- Theme toggler -->
                 <div id="theme-toggler">
@@ -21,6 +22,10 @@
                         </svg>
                     </button>
                 </div>
+            </div>
+            <div>
+            <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-7 py-2.5 me-2 mx-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Light</button>
+
             </div>
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none bg-primary-100 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
