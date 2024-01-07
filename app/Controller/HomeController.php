@@ -1,8 +1,10 @@
 <?php
 namespace App\Controller;
-class HomeController
+
+class HomeController 
 {
     public function index(){
-        include "../app/View/home.php";
+        // include "../app/View/home.php";
+        Controller::GetView("home");
     }
 }

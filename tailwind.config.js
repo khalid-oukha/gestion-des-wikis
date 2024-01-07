@@ -15,7 +15,7 @@ module.exports = {
     plaintext: "php",
   },
 
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
   darkMode: "class",
   theme: {
     extend: {
