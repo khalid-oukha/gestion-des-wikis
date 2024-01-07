@@ -1,0 +1,17 @@
+{
+    "name": "youcode/wikis",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "router\\":"router/",
+            "config\\":"database/"
+        }
+    },
+    "authors": [
+        {
+            "name": "khalid oukha",
+            "email": "oukhakhalid@gmail.com"
+        }
+    ],
+    "require": {}
+}
