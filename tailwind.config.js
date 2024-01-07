@@ -24,8 +24,8 @@ module.exports = {
       },
       colors :{
         'primary' :{
-          100: '#0D4B33',
-          200: '#052519'
+          100: '#457178',
+
         } ,
         'orange' : '#FB6109',
 
