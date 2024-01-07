@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller;
-class HomeController
+class SinglePageController
 {
     public function index(){
         Controller::GetView("SinglePage");

@@ -19,7 +19,12 @@
             <div class="group grid w-full grid-cols-2">
                 <div>
                     <div class="pr-12">
-                        <p class="peer mb-6 text-gray-400">
+                        <h5 class="mb-2 text-2xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                            lorme vs lurem
+                        </h5>
+                        <p class="peer mb-6 text-gray-400  text-base  dark:text-neutral-200">
+                            Simply Air Conditioning London are fixed system heating and air conditioning installation specialists. Because we’ve tested all heating and air conditioning unit manufacturers before using them there are no hidden surprises for our customers. We only supply air conditioning units from the leading manufacturers so any system we fit will be of the highest quality. We also thoroughly test every type of unit before supplying..
+                            Simply Air Conditioning London are fixed system heating and air conditioning installation specialists. Because we’ve tested all heating and air conditioning unit manufacturers before using them there are no hidden surprises for our customers. We only supply air conditioning units from the leading manufacturers so any system we fit will be of the highest quality. We also thoroughly test every type of unit before supplying..
                             Simply Air Conditioning London are fixed system heating and air conditioning installation specialists. Because we’ve tested all heating and air conditioning unit manufacturers before using them there are no hidden surprises for our customers. We only supply air conditioning units from the leading manufacturers so any system we fit will be of the highest quality. We also thoroughly test every type of unit before supplying..
                         </p>
                         <p class="mb-6 text-gray-400">
@@ -47,10 +52,19 @@
                         </svg>
                     </a>
                     <div class="rounded-xl overflow-hidden">
-                        <img src="https://picsum.photos/800/800" alt="">
+                        <img class="w-full" src="<?= URL_DIR ?>public/assets/dist/alians.jpg" alt="">
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="flex justify-center gap-2 flex-wrap p-4">
+        <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#photography</span>
+            <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#travel</span>
+            <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#winter</span>
+            <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#chill</span>            <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#photography</span>
+            <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#travel</span>
+            <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#winter</span>
+            <span class="bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600">#chill</span>
         </div>
     </div>
     <?php include "../app/View/includes/footer.php" ?>
