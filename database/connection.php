@@ -1,4 +1,7 @@
 <?php
+namespace config;
+use PDO;
+use PDOException;
 
 class Connection {
 
@@ -9,7 +12,7 @@ class Connection {
     public function __construct()
     {
          $host = "localhost";
-         $dbname="wikis";
+         $dbname="wiki";
          $username = "root";
          $password = "";
 
@@ -35,5 +38,5 @@ class Connection {
 }
 
 
-$db= Connection::getdatabaseObj();
-$Pdo=$db->GetConnection();
+// $db= Connection::getdatabaseObj();
+// $Pdo=$db->GetConnection();
