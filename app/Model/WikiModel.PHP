@@ -18,7 +18,7 @@ class WikiModel extends Crud{
         return $this->read('wiki');
     }
 
-    public function fetchRecentWikis()
+    public function fetchRecentWikis($limit)
     {
         try{
             $query="SELECT w.*,u.full_Name,c.NAME FROM wiki w
@@ -27,7 +27,7 @@ class WikiModel extends Crud{
             INNER JOIN categorie c 
             ON w.categorie_id=c.id
             WHERE status='published'
-            order by created_at DESC LIMIT 6 ";
+            order by created_at DESC LIMIT $limit ";
 
             $stmt=$this->con->query($query);
             $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
