@@ -14,8 +14,10 @@ class Router
 
     public function Sender():void
     {
+        
         $uri= $_SERVER['REQUEST_URI'] ?? '';
         $uri = explode('/', trim(strtolower($uri), '/'));
+
         unset($uri[0]);
         if (!empty($uri[1])) {
             $controller = ucwords($uri[1] ) . 'Controller';
