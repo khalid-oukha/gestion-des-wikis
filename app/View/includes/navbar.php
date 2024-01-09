@@ -5,11 +5,7 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-white">WIKIS</span>
         </a>
         <div class="flex text-white items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <button type="button" class="flex text-sm py-2 px-2 dark:bg-primary-100 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-                <span class="sr-only">Open user menu</span>
-                <i class="fa-solid fa-user"></i>
-            </button>
-            
+
             <div>
                 <!-- Theme toggler -->
                 <div id="theme-toggler">
@@ -23,32 +19,52 @@
                     </button>
                 </div>
             </div>
-            <div>
-            <a href="<?=URL_DIR?>login"  type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-7 py-2.5 me-2 mx-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Login</a>
-
+            <?php
+            if(!isset($_SESSION['id'])):
+            ?>
+                <div>
+                <a href="<?= URL_DIR ?>login" type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-7 py-2.5 me-2 mx-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Login</a>
             </div>
+            <?php 
+            endif
+            ?>
             <!-- Dropdown menu -->
-            <div class="z-50 hidden my-4 text-base list-none bg-primary-100 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-                <div class="px-4 py-3">
-                    <span class="block text-sm text-white dark:text-white">khalid waheli</span>
-                    <span class="block text-sm  text-white truncate dark:text-gray-400">name@flowbite.com</span>
-                </div>
-                <ul class="py-2" aria-labelledby="user-menu-button">
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">wikis</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-                    </li>
+            <?php
+            if (isset($_SESSION['id'])) {
 
-                </ul>
-            </div>
+            ?>
+                <button type="button" class="flex text-sm py-2 px-2 dark:bg-primary-100 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                    <span class="sr-only">Open user menu</span>
+                    <i class="fa-solid fa-user"></i>
+                </button>
+
+                <div class="z-50 hidden my-4 text-base list-none bg-primary-100 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+                    <div class="px-4 py-3">
+
+                        <span class="block text-sm text-white dark:text-white"><?= $_SESSION['full_name'] ?></span>
+                        <span class="block text-sm  text-white truncate dark:text-gray-400"><?= $_SESSION['email'] ?></span>
+
+                    </div>
+                    <ul class="py-2" aria-labelledby="user-menu-button">
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">wikis</a>
+                        </li>
+                        <li>
+                            <a href="Login/logout" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            <?php
+            }
+            ?>
             <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">

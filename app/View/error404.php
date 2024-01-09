@@ -7,7 +7,7 @@
     <title>Not Found !</title>
     <link rel="stylesheet" href="public/assets/dist/output.css">
 </head>
-
+    
 <body class="dark:bg-gray-800  bg-gray-300">
     <div class="mt-24 flex flex-col justify-center text-center">
         <h1 class="mb-4 text-6xl font-poppins tracking-wider font-semibold text-green-700">404</h1>

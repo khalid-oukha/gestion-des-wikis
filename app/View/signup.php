@@ -18,7 +18,7 @@
   <div class="contain py-16">
     <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
 
-      <div class="bg-red-500 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert">
+      <div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert">
         <?php
         $errors = $_SESSION['errors'] ?? [];
         unset($_SESSION['errors']);

@@ -96,14 +96,16 @@ class Crud
     
     public  function unique(string $value, string $table, string $column)
     {
-        $query = "SELECT COUNT(*) FROM {$table} WHERE {$column} = :value";
+        $query = "SELECT * FROM {$table} WHERE {$column} = :value";
         $stmt = $this->con->prepare($query);
         $stmt->bindValue(':value', $value);
         $stmt->execute();
-        $count = $stmt->fetchColumn();
-        if ($count > 0) {
-            return true;
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($data > 0) {
+            return $data;
         }
-        return false;
+        return [];
     }
+
+
 }
