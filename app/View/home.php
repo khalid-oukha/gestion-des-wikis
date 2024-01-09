@@ -22,7 +22,7 @@
             <div class="relative max-w-screen-xl mx-auto px-8 z-10 text-center text-white">
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">Welcome to Wikis : Your Source for Informative Articles</h1>
                 <p class="text-lg md:text-xl mb-8">Experience excellence like never before with our exclusive products and services.</p>
-                <button type="button" class="bg-primary-100 hover:bg-primary-100 text-white text-base font-semibold px-8 py-2.5 rounded-full transition duration-300 ease-in-out shadow-lg hover:shadow-xl">Get Started</button>
+                <a href="signup" type="button" class="bg-primary-100 hover:bg-primary-100 text-white text-base font-semibold px-8 py-2.5 rounded-full transition duration-300 ease-in-out shadow-lg hover:shadow-xl">Get Started</a>
             </div>
         </div>
     </section>
@@ -104,7 +104,6 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="public/assets/js/navbar.js"></script>
-<script src="public/assets/js/searchByDate.js"></script>
 <script src="public/assets/js/liveSearch.js"></script>
 <script src="public/assets/js/theme.js"></script>
 <script src="public/assets/js/home.js"></script>

@@ -39,22 +39,12 @@ class Crud
     {
         try {
             $query = "SELECT * FROM `$tableName` ";
-
-
             $stmt = $this->con->query($query);
-
             $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $records;
         } catch (PDOException $e) {
             echo "Error fetching records: " . $e->getMessage();
-            return []; // Return an empty array in case of an error
-            // Log the error (you may want to use a logging library or write to a log file)
-            error_log("Error fetching records: " . $e->getMessage());
-
-            // Re-throw the exception to let the calling code handle it
-            throw $e;
-            echo "Error fetching records: " . $e->getMessage();
-            return [];
+            return []; 
         }
     }
 
@@ -102,5 +92,18 @@ class Crud
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public  function unique(string $value, string $table, string $column)
+    {
+        $query = "SELECT COUNT(*) FROM {$table} WHERE {$column} = :value";
+        $stmt = $this->con->prepare($query);
+        $stmt->bindValue(':value', $value);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        if ($count > 0) {
+            return true;
+        }
+        return false;
     }
 }

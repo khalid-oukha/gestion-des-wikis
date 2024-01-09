@@ -51,7 +51,7 @@
                         </svg>
                     </a>
                     <div class="rounded-xl overflow-hidden">
-                        <img class="w-full" src="<?= URL_DIR ?>public/assets/dist/alians.jpg" alt="">
+                        <img class="w-full" src="<?= URL_DIR ?>public/assets/images/wk.jpg" alt="">
                     </div>
                 </div>
             </div>
