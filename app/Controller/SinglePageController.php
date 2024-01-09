@@ -1,8 +1,16 @@
 <?php
 namespace App\Controller;
-class SinglePageController
+
+use App\Model\TagModel;
+use App\Model\WikiModel;
+
+class SinglepageController extends Controller
 {
-    public function index(){
-        Controller::GetView("SinglePage");
+    public function index($id){
+        $obj = new WikiModel();
+        $tag = new TagModel();
+        $singleArticle = $obj->getArticle($id);
+        $articleTags = $tag->getTags($id);
+        Controller::GetView("SinglePage",['singleArticle' => $singleArticle,'articleTags' => $articleTags]);
     }
 }

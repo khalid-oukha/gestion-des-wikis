@@ -9,6 +9,8 @@ class ArticlesController
     public function index(){
         $obj = new WikiModel();
         $wikis = $obj->fetchRecentWikis(1000);
-        Controller::GetView("articles",['wikis' => $wikis]);
+        $topauthors = $obj->fetchTopAuthors();
+        // var_dump($topauthors);die;
+        Controller::GetView("articles",['wikis' => $wikis,'topauthors' => $topauthors]);
     }
 }

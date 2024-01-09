@@ -17,6 +17,22 @@ class WikiModel extends Crud{
     {
         return $this->read('wiki');
     }
+    public function getArticle($id){
+        try{
+            $query = "SELECT w.*,u.full_Name,c.NAME FROM wiki w
+            INNER JOIN user u
+            ON w.user_id=u.id
+            INNER JOIN categorie c 
+            ON w.categorie_id=c.id
+            WHERE status='published' and u.id = $id";
+            $stmt = $this->con->query($query);
+            $records = $stmt->fetch(PDO::FETCH_OBJ);
+            return $records;
+        }catch(PDOException $e){
+            echo "error fetching this article" . $e->getMessage();
+        }
+
+    }
 
     public function fetchRecentWikis($limit)
     {
@@ -35,6 +51,23 @@ class WikiModel extends Crud{
         }catch(PDOException $e){
             echo "error fetching top 4 wikis" . $e->getMessage();
             return [];
+        }
+    }
+    public function fetchTopAuthors(){
+        try{
+            $query="SELECT u.full_Name,COUNT(u.id) AS number_wikis FROM user u 
+            INNER JOIN wiki t
+            ON u.id=t.user_id
+            WHERE u.role='author'
+            GROUP BY u.id
+            LIMIT 5;
+            ";
+            $stmt=$this->con->query($query);
+            $records=$stmt->fetchAll(PDO::FETCH_OBJ);
+            return $records;
+        }
+        catch(PDOException $e){
+            echo "error fetching records" . $e->getMessage();
         }
     }
 }
