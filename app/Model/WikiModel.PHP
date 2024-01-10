@@ -53,6 +53,7 @@ class WikiModel extends Crud{
             return [];
         }
     }
+    
     public function fetchTopAuthors(){
         try{
             $query="SELECT u.full_Name,COUNT(u.id) AS number_wikis FROM user u 
@@ -68,6 +69,31 @@ class WikiModel extends Crud{
         }
         catch(PDOException $e){
             echo "error fetching records" . $e->getMessage();
+        }
+    }
+
+    public function getPublishedWikis(){
+        try{
+            $query = "select * from wiki where `status` = 'published'";
+            $stmt = $this->con->query($query);
+            $recordes = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $recordes;
+        }catch(PDOException $e){
+            echo "error fetching wikis : " . $e->getMessage();
+        }
+
+    }
+
+
+    public function getArchivedWikis(){
+        try{
+            $query = "select * from wiki where `status` = 'archived'";
+            $stmt = $this->con->query($query);
+            $records = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $records ;
+        } 
+        catch(PDOException $e){
+            echo "error fetching wikis : " . $e->getMessage();
         }
     }
 }

@@ -12,7 +12,6 @@
 
 <body class="dark:bg-gray-900">
     <?php
-    use App\Model\WikiModel;
     include '../app/View/includes/navbar.php';
     ?>
     <div class="overflow-x-hidden bg-gray-100">
