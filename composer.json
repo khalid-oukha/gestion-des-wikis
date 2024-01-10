@@ -13,5 +13,7 @@
             "email": "oukhakhalid@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "nesbot/carbon": "^2.72"
+    }
 }

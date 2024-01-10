@@ -18,6 +18,7 @@ class DashboardController extends Controller
         $totalategories = $categorie->getAllCategories();
         $publishedWikis = $wiki->getPublishedWikis();
         $archivedWikis = $wiki->getArchivedWikis();
-        Controller::GetView("dashboard/dashboard",['totalUsers' => $totalUsers,'totalategories' =>  $totalategories,'publishedWikis' => $publishedWikis, 'archivedWikis' => $archivedWikis]);
+        $topauthors = $user->fetchTopAuthors();
+        Controller::GetView("dashboard/dashboard",['totalUsers' => $totalUsers,'totalategories' =>  $totalategories,'publishedWikis' => $publishedWikis, 'archivedWikis' => $archivedWikis,'topauthors' => $topauthors]);
     }
 }

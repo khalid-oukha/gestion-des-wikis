@@ -29,7 +29,7 @@ class SignUpController{
             if(ValidationController::validateEmail($email)){
                 $errors['emailform'] = "not valid Email ";
             }
-            if(count($objCrud->unique($email,"user","email"))>0){
+            if(count($objCrud->getElementByColumn($email,"user","email"))>0){
                 $errors['emailform'] = "email already exist";
             }
 

@@ -120,15 +120,18 @@
                         <table class="w-full whitespace-no-wrap">
                             <thead>
                                 <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                    <th class="px-4 py-3">id</th>
+                                    <th class="px-4 py-3">member since</th>
                                     <th class="px-4 py-3">Authors</th>
                                     <th class="px-4 py-3">number of wikis</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                <?php
+                                foreach($topauthors as $topauthor):
+                                ?>
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3 text-sm">
-                                        27/12/2023
+                                        <?=$topauthor->created_at?>
                                     </td>
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
@@ -138,18 +141,20 @@
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                             </div>
                                             <div>
-                                                <p class="font-semibold">Morocco</p>
-                                                <p class="font-semibold">Tanzania</p>
+                                                <p class="font-semibold"><?=$topauthor->full_Name?></p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-xs">
                                         <span class="px-2 py-1 font-semibold leading-tight text-white bg-primary-100 rounded-full dark:bg-primary-100 dark:text-white">
-                                            200
+                                        <?=$topauthor->number_wikis?>
                                         </span>
                                     </td>
 
                                 </tr>
+                                <?php
+                                endforeach;
+                                ?>
                             </tbody>
                         </table>
                     </div>

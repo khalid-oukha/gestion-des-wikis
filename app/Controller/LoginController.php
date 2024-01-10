@@ -18,22 +18,23 @@ class LoginController
         $password = $_POST['password'];
 
         $obj = new Crud();
-        $user = $obj->unique($email, "user", "email");
+        $user = $obj->getElementByColumn($email, "user", "email");
         if ($user > 0) {
-            $pwdCheck = password_verify($password, $user['password']);
+            $pwdCheck = password_verify($password, $user[0]->password);
             if ($pwdCheck) {
-                // Password is correct, set session variables
+
                 $redirect = URL_DIR . 'home';
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['full_name'] = $user['full_Name'];
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['role'] = $user['role'];
-                // var_dump($_SESSION);die;
+                $_SESSION['id'] = $user[0]->id;
+                $_SESSION['full_name'] = $user[0]->full_Name;
+                $_SESSION['email'] = $user[0]->email;
+                $_SESSION['role'] = $user[0]->role;
+
                 if ($_SESSION['role'] == "admin") {
                     header("Location: $redirect");
                 } else {
                     header("Location: $redirect");
                 }
+
             } else {
                 $loginErrors["password"] = "invalide password";
                 $redirect = URL_DIR . 'login';

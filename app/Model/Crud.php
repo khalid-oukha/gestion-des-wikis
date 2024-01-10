@@ -94,13 +94,13 @@ class Crud
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
-    public  function unique(string $value, string $table, string $column)
+    public  function getElementByColumn(string $value, string $table, string $column)
     {
         $query = "SELECT * FROM {$table} WHERE {$column} = :value";
         $stmt = $this->con->prepare($query);
         $stmt->bindValue(':value', $value);
         $stmt->execute();
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
         if ($data > 0) {
             return $data;
         }

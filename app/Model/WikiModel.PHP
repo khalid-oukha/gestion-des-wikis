@@ -13,10 +13,33 @@ class WikiModel extends Crud{
         $db = Connection::getdatabaseObj();
         $this->con = $db->getConnection();
     }
+    
+    
+
     public function fetchAllWikis()
     {
-        return $this->read('wiki');
+        try{
+            $query = "SELECT w.*,u.full_Name,c.NAME FROM wiki w
+            INNER JOIN user u
+            ON w.user_id=u.id
+            INNER JOIN categorie c 
+            ON w.categorie_id=c.id";
+            $stmt = $this->con->query($query);
+            $records = $stmt->fetchALL(PDO::FETCH_OBJ);
+            return $records;
+        }catch(PDOException $e){
+            echo "error fetching this article" . $e->getMessage();
+        }
     }
+
+    public function AddWiki($data){
+        return $this->create("wiki",$data);
+    }
+
+    public function updateWiki($data,$id){
+        $this->update("wiki",$data,$id);
+    }
+
     public function getArticle($id){
         try{
             $query = "SELECT w.*,u.full_Name,c.NAME FROM wiki w
@@ -24,7 +47,7 @@ class WikiModel extends Crud{
             ON w.user_id=u.id
             INNER JOIN categorie c 
             ON w.categorie_id=c.id
-            WHERE status='published' and u.id = $id";
+            WHERE status = 'published' and u.id = $id";
             $stmt = $this->con->query($query);
             $records = $stmt->fetch(PDO::FETCH_OBJ);
             return $records;
@@ -54,48 +77,36 @@ class WikiModel extends Crud{
         }
     }
     
-    public function fetchTopAuthors(){
-        try{
-            $query="SELECT u.full_Name,COUNT(u.id) AS number_wikis FROM user u 
-            INNER JOIN wiki t
-            ON u.id=t.user_id
-            WHERE u.role='author'
-            GROUP BY u.id
-            LIMIT 5;
-            ";
-            $stmt=$this->con->query($query);
-            $records=$stmt->fetchAll(PDO::FETCH_OBJ);
-            return $records;
-        }
-        catch(PDOException $e){
-            echo "error fetching records" . $e->getMessage();
-        }
-    }
+
 
     public function getPublishedWikis(){
-        try{
-            $query = "select * from wiki where `status` = 'published'";
-            $stmt = $this->con->query($query);
-            $recordes = $stmt->fetchAll(PDO::FETCH_OBJ);
-            return $recordes;
-        }catch(PDOException $e){
-            echo "error fetching wikis : " . $e->getMessage();
-        }
+
+        return $this->getElementByColumn("published","wiki","status");
+        // try{
+        //     $query = "select * from wiki where `status` = 'published'";
+        //     $stmt = $this->con->query($query);
+        //     $recordes = $stmt->fetchAll(PDO::FETCH_OBJ);
+        //     return $recordes;
+        // }catch(PDOException $e){
+        //     echo "error fetching wikis : " . $e->getMessage();
+        // }
 
     }
 
 
     public function getArchivedWikis(){
-        try{
-            $query = "select * from wiki where `status` = 'archived'";
-            $stmt = $this->con->query($query);
-            $records = $stmt->fetchAll(PDO::FETCH_OBJ);
-            return $records ;
-        } 
-        catch(PDOException $e){
-            echo "error fetching wikis : " . $e->getMessage();
-        }
+        return $this->getElementByColumn("archived","wiki","status");
+        // try{
+        //     $query = "select * from wiki where `status` = 'archived'";
+        //     $stmt = $this->con->query($query);
+        //     $records = $stmt->fetchAll(PDO::FETCH_OBJ);
+        //     return $records ;
+        // } 
+        // catch(PDOException $e){
+        //     echo "error fetching wikis : " . $e->getMessage();
+        // }
     }
+
 }
 
 
