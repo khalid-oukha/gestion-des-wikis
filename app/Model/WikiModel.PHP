@@ -149,4 +149,18 @@ class WikiModel extends Crud
             echo "status not updated : " . $e->getMessage();
         }
     }
+
+    public function search($input){
+        $query = "SELECT w.*,u.full_Name,c.NAME FROM wiki w
+        INNER JOIN user u
+        ON w.user_id=u.id
+        INNER JOIN categorie c 
+        ON w.categorie_id=c.id
+        WHERE status='published' and 
+        (c.NAME LIKE '%$input%' OR u.full_Name LIKE '%$input%' OR w.title LIKE '%$input%')
+        ";
+        $stmt = $this->con->query($query);
+        $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $records;
+    }
 }
