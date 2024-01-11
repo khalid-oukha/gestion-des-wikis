@@ -40,6 +40,31 @@ class WikisController extends Controller{
         $id = $_POST['id'];
         unset($_POST['id']);
         $article->updateWiki($_POST,$id);
+        header("location:\wikis\dashboard\wikis");
 
     }
+
+    public function deleteWiki($id){
+        $article = new WikiModel();
+        $article->deleteWiki($id);
+        header("location:\wikis\wikis");
+    }
+
+    //update status : 
+    public function acceptWiki($id){
+        $article = new WikiModel();
+        $article->acceptWiki($id);
+        header("location:\wikis\wikis");
+    }
+    public function RejectWiki($id){
+        $article = new WikiModel();
+        $article->RejectWiki($id);
+        header("location:\wikis\wikis");
+    }
+    public function ArchiveWiki($id){
+        $article = new WikiModel();
+        $article->ArchiveWiki($id);
+        header("location:\wikis\wikis");
+    }
+    
 }
