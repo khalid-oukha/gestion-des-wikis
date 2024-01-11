@@ -90,9 +90,8 @@
     </main>
 
 </body>
-<script src="../path/to/flowbite/dist/datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
-<script src="public/assets/js/navigation.js"></script>
-<script src="public/assets/js/theme.js"></script>
+<script src="<?= URL_DIR ?>public/assets/js/navigation.js"></script>
+<script src="<?= URL_DIR ?>public/assets/js/theme.js"></script>
 
 </html>

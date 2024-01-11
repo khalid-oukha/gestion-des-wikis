@@ -20,6 +20,14 @@ class WikisController extends Controller{
 
         Controller::GetView("dashboard\addwiki",["categories" => $categories,"users" => $users]);
     }
+
+    public function insertWiki(){
+        $article = new WikiModel();
+        // var_dump($_POST);die;
+        $article->AddWiki($_POST);
+        header("location:\wikis\dashboard\wikis");
+    }
+
     public function updateWiki($id){
         $article = new WikiModel();
         $categorie = new categorieModel();
@@ -27,12 +35,6 @@ class WikisController extends Controller{
         $categories = $categorie->getAllCategories();
         $users = $user->getAllUsers();
         Controller::GetView("dashboard\updateWiki",["categories" => $categories,"users" => $users,"id" => $id]);
-    }
-    public function insertWiki(){
-        $article = new WikiModel();
-        // var_dump($_POST);die;
-        $article->AddWiki($_POST);
-        header("location:\wikis\dashboard\wikis");
     }
 
     public function submitUpdatedData(){
