@@ -150,7 +150,8 @@ class WikiModel extends Crud
         }
     }
 
-    public function search($input){
+    public function search($input)
+    {
         $query = "SELECT w.*,u.full_Name,c.NAME FROM wiki w
         INNER JOIN user u
         ON w.user_id=u.id
@@ -163,4 +164,87 @@ class WikiModel extends Crud
         $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $records;
     }
+
+    public function createWiki($table, $data, $tags)
+    {
+        try {
+            $this->create($table, $data);
+            $wikiId=$this->con->lastInsertId();
+            $tagIds = [];
+            foreach ($tags as $tag) {
+                $tag = trim($tag);
+
+                $checktags = "SELECT id FROM tag WHERE NAME = :tag";
+                $stmt = $this->con->prepare($checktags);
+                $stmt->bindParam(':tag', $tag);
+                $stmt->execute();
+                $tagresult = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($tagresult) {
+                    $tagIds[] = $tagresult['id'];
+                } else {
+                    $creatTag = "INSERT INTO tag (NAME) VALUES (:tag)";
+                    $stmt = $this->con->prepare($creatTag);
+                    $stmt->bindParam(':tag', $tag);
+                    $stmt->execute();
+
+                    $tagIds[] = $this->con->lastInsertId();
+                }
+            }
+            foreach ($tagIds as $tagId) {
+                $addWikiTagQuery = "INSERT INTO tagwiki (id_tag, id_wiki) VALUES (:tag_id, :wiki_id)";
+                $addWikiTagStmt = $this->con->prepare($addWikiTagQuery);
+                $addWikiTagStmt->bindParam(':tag_id', $tagId);
+                $addWikiTagStmt->bindParam(':wiki_id', $wikiId);
+                $addWikiTagStmt->execute();
+            }
+        } catch (PDOException $e) {
+            "error inserting data :" . $e->getMessage();
+        }
+    }
+
+    // public function CreateWiki($table, $data, $tags)
+    // {
+    //     // var_dump($data);
+    //     try {
+    //         $this->create($table, $data);
+    //         $wikiId = $this->pdo->lastInsertId();
+    //         $tagIds = [];
+    //         foreach ($tags as $tag) {
+    //             $tag = trim($tag);
+
+    //             // Check if the tag already exists
+    //             $tagExistsQuery = "SELECT id FROM tags WHERE name = :tag";
+    //             $tagStmt = $this->pdo->prepare($tagExistsQuery);
+    //             $tagStmt->bindParam(':tag', $tag);
+    //             $tagStmt->execute();
+    //             $tagResult = $tagStmt->fetch(PDO::FETCH_ASSOC);
+
+    //             if ($tagResult) {
+    //                 // Tag already exists, get its ID
+    //                 $tagIds[] = $tagResult['id'];
+    //             } else {
+    //                 // Tag does not exist, add it to the tags table
+    //                 $addTagQuery = "INSERT INTO tags (name) VALUES (:tag)";
+    //                 $addTagStmt = $this->pdo->prepare($addTagQuery);
+    //                 $addTagStmt->bindParam(':tag', $tag);
+    //                 $addTagStmt->execute();
+
+    //                 // Get the ID of the newly added tag
+    //                 $tagIds[] = $this->pdo->lastInsertId();
+    //             }
+    //         }
+
+    //         // Add wiki-tag relationships
+    //         foreach ($tagIds as $tagId) {
+    //             $addWikiTagQuery = "INSERT INTO wiki_tag (tag_id, wiki_id) VALUES (:tag_id, :wiki_id)";
+    //             $addWikiTagStmt = $this->pdo->prepare($addWikiTagQuery);
+    //             $addWikiTagStmt->bindParam(':tag_id', $tagId);
+    //             $addWikiTagStmt->bindParam(':wiki_id', $wikiId);
+    //             $addWikiTagStmt->execute();
+    //         }
+
+    //     } catch (PDOException $e) {
+    //         echo "Error inserting wiki with tags: " . $e->getMessage();
+    //     }
+    // }
 }

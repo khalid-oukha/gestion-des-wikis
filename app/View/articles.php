@@ -47,7 +47,7 @@
                                             <?= $wiki['title'] ?></a>
                                         <p class="mt-2 dark:text-neutral-50 text-gray-600"><?= $wiki['description'] ?></p>
                                     </div>
-                                    <div class="flex items-center justify-between mt-4"><a href="#" class="text-blue-500 dark:text-neutral-50 hover:underline ">Read more</a>
+                                    <div class="flex items-center justify-between mt-4"><a href="<?= URL_DIR ?>Singlepage\index\<?= $wiki['id'] ?>" class="text-blue-500 dark:text-neutral-50 hover:underline ">Read more</a>
                                         <div><a href="#" class="flex items-center"><img src="<? ?>" alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
                                                 <h1 class="font-bold text-gray-700 hover:underline dark:text-neutral-50"><?= $wiki['full_Name'] ?></h1>
                                             </a></div>

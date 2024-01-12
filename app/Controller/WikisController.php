@@ -25,7 +25,7 @@ class WikisController extends Controller{
         $article = new WikiModel();
         // var_dump($_POST);die;
         $article->AddWiki($_POST);
-        header("location:\wikis\dashboard\wikis");
+        header("location:\wikis\wikis");
     }
 
     public function updateWiki($id){

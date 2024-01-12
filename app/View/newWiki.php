@@ -35,8 +35,8 @@
                         <div class="bg-white dark:bg-gray-700 shadow rounded-lg p-6">
                             <h1 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">wiki Data</h1>
                             <p class="text-gray-600 dark:text-gray-300 mb-6">Here you can add wiki's informations.</p>
-                            <form action="..\NewWiki\create_wiki" method="POST">
-                                <select name="categorie" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                            <form action="insertWiki" method="POST">
+                                <select name="categorie_id" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                     <?php
                                     foreach ($categories as $categorie) { ?>
                                         <option value="<?= $categorie['id'] ?>"><?= $categorie['NAME'] ?></option>
@@ -45,14 +45,6 @@
                                     ?>
                                 </select>
 
-                                <select name="user_id" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                    <?php
-                                    foreach ($users as $user) { ?>
-                                        <option value="<?= $user['id'] ?>"><?= $user['full_Name'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
                                 <div class="mb-4">
                                     <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                                     <input type="text" placeholder="your title here" name="title" class="border p-2 rounded w-full">
@@ -68,12 +60,6 @@
                                     <textarea name="content" id="mytextarea"></textarea>
                                 </div>
                                 <div class="mb-4">
-                                    <div class="sm:col-span-2">
-                                        <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tags: </label>
-                                        <input  type="text" name="tags" id="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="design,IT,article,paragh..." required="">
-                                    </div>
-                                </div>
-                                <div class="mb-4">
 
                                     <button type="submit" class="px-4 py-2 bg-primary-100 rounded  text-white hover:bg-blue-600 focus:outline-none transition-colors">
                                         Confirm And Submit
@@ -82,7 +68,6 @@
                                     <button type="button" class="px-4 py-2 bg-orange rounded  text-white hover:bg-blue-600 focus:outline-none transition-colors">
                                         Cancel
                                     </button>
-
 
                             </form>
                         </div>
