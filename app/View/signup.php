@@ -18,18 +18,20 @@
   <div class="contain py-16">
     <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
 
-      <div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert">
+      <!-- <div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert"> -->
         <?php
         $errors = $_SESSION['errors'] ?? [];
         unset($_SESSION['errors']);
         if (!empty($errors)) {
           foreach ($errors as $error) {
+            echo '<div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert">';
             echo "<span class='block text-red-500 sm:inline'><br>
             $error</span>";
+            echo '</div>';
           }
         }
         ?>
-      </div>
+      <!-- </div> -->
       <h2 class="text-2xl uppercase font-medium mb-1">Sign up</h2>
       <p class="text-gray-600 mb-6 text-sm dark:text-gray-100">Welcome! So good to have you heree!</p>
       <form action="Signup/registerUser" method="POST">

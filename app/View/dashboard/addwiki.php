@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?= URL_DIR ?>public/assets/dist/output.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="https://cdn.tiny.cloud/1/tae69tv15q8646ee9ytsznj2x6mphimtyeq9b9nhu5iyo6jg/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -35,7 +37,7 @@
                         <div class="bg-white dark:bg-gray-700 shadow rounded-lg p-6">
                             <h1 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">wiki Data</h1>
                             <p class="text-gray-600 dark:text-gray-300 mb-6">Here you can add wiki's informations.</p>
-                            <form action="..\NewWiki\create_wiki" method="POST">
+                            <form action="<?= URL_DIR ?>NewWiki\create_wiki" method="POST">
                                 <select name="categorie" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                     <?php
                                     foreach ($categories as $categorie) { ?>
@@ -44,7 +46,9 @@
                                     }
                                     ?>
                                 </select>
-
+                                <?php 
+                                if((isset($_SESSION['role']) && $_SESSION['role']=='admin') ):
+                                ?>
                                 <select name="user_id" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                     <?php
                                     foreach ($users as $user) { ?>
@@ -53,6 +57,9 @@
                                     }
                                     ?>
                                 </select>
+                                <?php
+                                endif;
+                                ?>
                                 <div class="mb-4">
                                     <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                                     <input type="text" placeholder="your title here" name="title" class="border p-2 rounded w-full">
@@ -70,7 +77,7 @@
                                 <div class="mb-4">
                                     <div class="sm:col-span-2">
                                         <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tags: </label>
-                                        <input  type="text" name="tags" id="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="design,IT,article,paragh..." required="">
+                                        <input type="text" name="tags" id="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="design,IT,article,paragh..." required="">
                                     </div>
                                 </div>
                                 <div class="mb-4">

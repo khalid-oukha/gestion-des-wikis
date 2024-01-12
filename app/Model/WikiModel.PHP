@@ -53,7 +53,7 @@ class WikiModel extends Crud
             ON w.user_id=u.id
             INNER JOIN categorie c 
             ON w.categorie_id=c.id
-            WHERE status = 'published' and u.id = $id";
+            WHERE status = 'published' and w.id = $id";
             $stmt = $this->con->query($query);
             $records = $stmt->fetch(PDO::FETCH_OBJ);
             return $records;
@@ -72,6 +72,25 @@ class WikiModel extends Crud
             ON w.categorie_id=c.id
             WHERE status='published'
             order by created_at DESC LIMIT $limit ";
+
+            $stmt = $this->con->query($query);
+            $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $records;
+        } catch (PDOException $e) {
+            echo "error fetching top 4 wikis" . $e->getMessage();
+            return [];
+        }
+    }
+    public function fetchAllPublishedwikis()
+    {
+        try {
+            $query = "SELECT w.*,u.full_Name,c.NAME FROM wiki w
+            INNER JOIN user u
+            ON w.user_id=u.id
+            INNER JOIN categorie c 
+            ON w.categorie_id=c.id
+            WHERE status='published'
+            order by created_at ";
 
             $stmt = $this->con->query($query);
             $records = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -20,23 +20,23 @@
                 </div>
             </div>
             <?php
-            if(!isset($_SESSION['id'])):
+            if (!isset($_SESSION['id'])) :
             ?>
                 <div>
-                <a href="<?= URL_DIR ?>login" type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-7 py-2.5 me-2 mx-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Login</a>
-            </div>
-            <?php 
+                    <a href="<?= URL_DIR ?>login" type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-7 py-2.5 me-2 mx-2  dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Login</a>
+                </div>
+            <?php
             endif
             ?>
             <!-- Dropdown menu -->
             <?php
             if (isset($_SESSION['id'])) {
-
             ?>
-                <button type="button" class="flex text-sm py-2 px-2 dark:bg-primary-100 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-                    <span class="sr-only">Open user menu</span>
-                    <i class="fa-solid fa-user"></i>
-                </button>
+
+                    <button type="button" class="flex text-sm py-2 px-2 dark:bg-primary-100 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                        <span class="sr-only">Open user menu</span>
+                        <i class="fa-solid fa-user"></i>
+                    </button>
 
                 <div class="z-50 hidden my-4 text-base list-none bg-primary-100 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
                     <div class="px-4 py-3">
@@ -46,14 +46,20 @@
 
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
+                        <?php
+                        if (isset($_SESSION['id']) && $_SESSION['role'] =="admin") :
+                        ?>
+                            <li>
+                                <a href="dashboard" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                            </li>
+                        <?php
+                        endif;
+                        ?>
                         <li>
-                            <a href="dashboard" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                            <a href="<?= URL_DIR ?>wikis" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Mywikis</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">wikis</a>
+                            <a href="<?= URL_DIR ?>articles" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">wikis</a>
                         </li>
                         <li>
                             <a href="Login/logout" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>

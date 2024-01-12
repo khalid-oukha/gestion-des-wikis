@@ -12,7 +12,7 @@ class ArticlesController
     {
         $obj = new WikiModel();
         $author = new userModel();
-        $wikis = $obj->fetchRecentWikis(1000);
+        $wikis = $obj->fetchAllPublishedwikis();
         $topauthors = $author->fetchTopAuthors();
         Controller::GetView("articles", ['wikis' => $wikis, 'topauthors' => $topauthors]);
     }

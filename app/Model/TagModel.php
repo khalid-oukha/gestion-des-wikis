@@ -47,7 +47,7 @@ class TagModel extends Crud
             $query = "SELECT t.NAME FROM tagwiki
         INNER JOIN tag t
         ON tagwiki.id_tag=t.id
-        WHERE tagwiki.id_wiki = 1;";
+        WHERE tagwiki.id_wiki = $id;";
             $stmt = $this->con->query($query);
             $records = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $records;

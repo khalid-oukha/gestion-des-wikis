@@ -10,15 +10,20 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $user = new userModel();
-        $categorie = new categorieModel();
-        $wiki = new WikiModel();
+        if (Controller::isAdmin()) {
 
-        $totalUsers = $user->getAllUsers();
-        $totalategories = $categorie->getAllCategories();
-        $publishedWikis = $wiki->getPublishedWikis();
-        $archivedWikis = $wiki->getArchivedWikis();
-        $topauthors = $user->fetchTopAuthors();
-        Controller::GetView("dashboard/dashboard",['totalUsers' => $totalUsers,'totalategories' =>  $totalategories,'publishedWikis' => $publishedWikis, 'archivedWikis' => $archivedWikis,'topauthors' => $topauthors]);
+            $user = new userModel();
+            $categorie = new categorieModel();
+            $wiki = new WikiModel();
+
+            $totalUsers = $user->getAllUsers();
+            $totalategories = $categorie->getAllCategories();
+            $publishedWikis = $wiki->getPublishedWikis();
+            $archivedWikis = $wiki->getArchivedWikis();
+            $topauthors = $user->fetchTopAuthors();
+            Controller::GetView("dashboard/dashboard", ['totalUsers' => $totalUsers, 'totalategories' =>  $totalategories, 'publishedWikis' => $publishedWikis, 'archivedWikis' => $archivedWikis, 'topauthors' => $topauthors]);
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
 }

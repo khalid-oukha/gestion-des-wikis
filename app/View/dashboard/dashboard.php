@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="public/assets/dist/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
@@ -16,8 +18,6 @@
     <?php
     include '../app/View/includes/navbar.php';
     include "../app/View/includes/Dash_navigation.php";
-
-
     ?>
 
 
@@ -160,48 +160,12 @@
                     </div>
                 </div>
 
-                <!-- Charts -->
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                    Statistics Charts
-                </h2>
-                <div class="grid gap-6 mb-8 md:grid-cols-2">
-                    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                        <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                            Sold Tickets
-                        </h4>
-                        <canvas id="Tickets">Tickets</canvas>
-                        <!-- <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                            Chart legend
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                                <span>Shirts</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                <span>Shoes</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
-                                <span>Bags</span>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 text-black dark:text-white">
-                        <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                            Top Ranked Nations
-                        </h4>
-                        <canvas class="text-black dark:text-white" id="Nations"></canvas>
-                        <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
-    <?php include "../app/View/includes/Dash_footer.php"; ?>
+
 
 </body>
-<script src="public/assets/js/charts.js"></script>
 <script src="public/assets/js/navigation.js"></script>
 <script src="public/assets/js/theme.js"></script>
 

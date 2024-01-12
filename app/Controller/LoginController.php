@@ -8,7 +8,13 @@ class LoginController
 {
     public function index()
     {
-        Controller::GetView("Login");
+        if (!Controller::isLogedin()) {
+
+            Controller::GetView("Login");
+        
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
 
     public function loginHandller()
@@ -34,7 +40,6 @@ class LoginController
                 } else {
                     header("Location: $redirect");
                 }
-
             } else {
                 $loginErrors["password"] = "invalide password";
                 $redirect = URL_DIR . 'login';

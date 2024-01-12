@@ -11,6 +11,7 @@ class SinglepageController extends Controller
         $tag = new TagModel();
         $singleArticle = $obj->getArticle($id);
         $articleTags = $tag->getTags($id);
+        // var_dump($articleTags);die;
         Controller::GetView("SinglePage",['singleArticle' => $singleArticle,'articleTags' => $articleTags]);
     }
 }

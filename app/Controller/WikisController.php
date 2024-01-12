@@ -1,72 +1,120 @@
 <?php
+
 namespace App\Controller;
 
 use App\Model\categorieModel;
 use App\Model\userModel;
 use App\Model\WikiModel;
 
-class WikisController extends Controller{
-    public function index(){
+class WikisController extends Controller
+{
+    public function index()
+    {
         $article = new WikiModel();
         $articles = $article->fetchAllWikis();
-        Controller::GetView("dashboard\wikis",["articles" => $articles]);
+        Controller::GetView("dashboard\wikis", ["articles" => $articles]);
     }
-    public function addwiki(){
-        $article = new WikiModel();
-        $categorie = new categorieModel();
-        $user = new userModel();
-        $categories = $categorie->getAllCategories();
-        $users = $user->getAllUsers();
+    public function addwiki()
+    {
+        if (!Controller::isLogedin()) {
 
-        Controller::GetView("dashboard\addwiki",["categories" => $categories,"users" => $users]);
-    }
+            $article = new WikiModel();
+            $categorie = new categorieModel();
+            $user = new userModel();
+            $categories = $categorie->getAllCategories();
+            $users = $user->getAllUsers();
 
-    public function insertWiki(){
-        $article = new WikiModel();
-        // var_dump($_POST);die;
-        $article->AddWiki($_POST);
-        header("location:\wikis\wikis");
-    }
-
-    public function updateWiki($id){
-        $article = new WikiModel();
-        $categorie = new categorieModel();
-        $user = new userModel();
-        $categories = $categorie->getAllCategories();
-        $users = $user->getAllUsers();
-        Controller::GetView("dashboard\updateWiki",["categories" => $categories,"users" => $users,"id" => $id]);
+            Controller::GetView("dashboard\addwiki", ["categories" => $categories, "users" => $users]);
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
 
-    public function submitUpdatedData(){
-        $article = new WikiModel();
-        $id = $_POST['id'];
-        unset($_POST['id']);
-        $article->updateWiki($_POST,$id);
-        header("location:\wikis\dashboard\wikis");
+    public function insertWiki()
+    {
+        if (!Controller::isLogedin()) {
 
+            $article = new WikiModel();
+            // var_dump($_POST);die;
+            $article->AddWiki($_POST);
+            header("location:\wikis\wikis");
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
 
-    public function deleteWiki($id){
-        $article = new WikiModel();
-        $article->deleteWiki($id);
-        header("location:\wikis\wikis");
+    public function updateWiki($id)
+    {
+        if (!Controller::isLogedin()) {
+
+            $article = new WikiModel();
+            $categorie = new categorieModel();
+            $user = new userModel();
+            $categories = $categorie->getAllCategories();
+            $users = $user->getAllUsers();
+            Controller::GetView("dashboard\updateWiki", ["categories" => $categories, "users" => $users, "id" => $id]);
+        } else {
+            Controller::RedirectToNotFound();
+        }
+    }
+
+    public function submitUpdatedData()
+    {
+        if (!Controller::isLogedin()) {
+
+            $article = new WikiModel();
+            $id = $_POST['id'];
+            unset($_POST['id']);
+            $article->updateWiki($_POST, $id);
+            header("location:\wikis\dashboard\wikis");
+        } else {
+            Controller::RedirectToNotFound();
+        }
+    }
+
+    public function deleteWiki($id)
+    {
+        if (!Controller::isLogedin()) {
+
+            $article = new WikiModel();
+            $article->deleteWiki($id);
+            header("location:\wikis\wikis");
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
 
     //update status : 
-    public function acceptWiki($id){
-        $article = new WikiModel();
-        $article->acceptWiki($id);
-        header("location:\wikis\wikis");
+    public function acceptWiki($id)
+    {
+        if (Controller::isAdmin()) {
+
+            $article = new WikiModel();
+            $article->acceptWiki($id);
+            header("location:\wikis\wikis");
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
-    public function RejectWiki($id){
-        $article = new WikiModel();
-        $article->RejectWiki($id);
-        header("location:\wikis\wikis");
+    public function RejectWiki($id)
+    {
+        if (Controller::isAdmin()) {
+            $article = new WikiModel();
+            $article->RejectWiki($id);
+            header("location:\wikis\wikis");
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
-    public function ArchiveWiki($id){
-        $article = new WikiModel();
-        $article->ArchiveWiki($id);
-        header("location:\wikis\wikis");
+    public function ArchiveWiki($id)
+    {
+        if (Controller::isAdmin()) {
+
+            $article = new WikiModel();
+            $article->ArchiveWiki($id);
+            header("location:\wikis\wikis");
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
-    
 }

@@ -33,7 +33,7 @@
                 <?php
                 if (isset($_SESSION['id'])) :
                 ?>
-                    <a href="NewWiki" type="button" class="bg-primary-100 hover:bg-primary-100 text-white text-base font-semibold px-8 py-2.5 rounded-full transition duration-300 ease-in-out shadow-lg hover:shadow-xl">Create your first Wiki</a>
+                    <a href="<?=URL_DIR?>NewWiki" type="button" class="bg-primary-100 hover:bg-primary-100 text-white text-base font-semibold px-8 py-2.5 rounded-full transition duration-300 ease-in-out shadow-lg hover:shadow-xl">Create wiki</a>
                 <?php
                 endif;
                 ?>
@@ -119,7 +119,7 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="public/assets/js/navbar.js"></script>
+<script src="<?= URL_DIR ?>public/assets/js/navbar.js"></script>
 <script src="<?= URL_DIR ?>public/assets/js/liveSearch.js"></script>
 <script src="public/assets/js/theme.js"></script>
 <script src="public/assets/js/home.js"></script>

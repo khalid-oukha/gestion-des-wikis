@@ -11,41 +11,62 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $categorie = new categorieModel();
-        $categories = $categorie->getAllCategories();
-        Controller::GetView("dashboard\categories", ["categories" => $categories]);
+        if (Controller::isAdmin()) {
+            $categorie = new categorieModel();
+            $categories = $categorie->getAllCategories();
+            Controller::GetView("dashboard\categories", ["categories" => $categories]);
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
 
-    public function addCategorie(){
-        $categorie = new categorieModel();
-        $categories = $categorie->addCategorie($_POST);
-        header("location:\wikis\categories");
+    public function addCategorie()
+    {
+        if (Controller::isAdmin()) {
+
+            $categorie = new categorieModel();
+            $categories = $categorie->addCategorie($_POST);
+            header("location:\wikis\categories");
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
-    public function deleteCategorie($id){
-        $categorie = new categorieModel();
-        $categorie->deleteCategorie($id);
-        header("location:\wikis\categories");
-    }
+    public function deleteCategorie($id)
+    {
+        if (Controller::isAdmin()) {
 
-    public function updateCategorie($id){
-        $categorie = new categorieModel();
-        // $id = $_POST['id'];
-        // unset($_POST['id']);
-        $categories = $categorie->updateCategorie($id);
-        // var_dump($categories);die;
-        Controller::GetView("dashboard\updateCategorie",["categories" => $categories]);
-    }
-
-    public function submitUpdateCategorie(){
-        $categorie = new categorieModel();
-        $id = $_POST['id'];
-        unset($_POST['id']);
-        // var_dump($id);die;
-
-        $categorie->submitupdateCategorie($_POST,$id);
-        header("location:\wikis\categories");
-
+            $categorie = new categorieModel();
+            $categorie->deleteCategorie($id);
+            header("location:\wikis\categories");
+        } else {
+            Controller::RedirectToNotFound();
+        }
     }
 
-    
+    public function updateCategorie($id)
+    {
+        if (Controller::isAdmin()) {
+
+            $categorie = new categorieModel();
+            $categories = $categorie->updateCategorie($id);
+            Controller::GetView("dashboard\updateCategorie", ["categories" => $categories]);
+        } else {
+            Controller::RedirectToNotFound();
+        }
+    }
+
+    public function submitUpdateCategorie()
+    {
+        if (Controller::isAdmin()) {
+
+            $categorie = new categorieModel();
+            $id = $_POST['id'];
+            unset($_POST['id']);
+
+            $categorie->submitupdateCategorie($_POST, $id);
+            header("location:\wikis\categories");
+        } else {
+            Controller::RedirectToNotFound();
+        }
+    }
 }
