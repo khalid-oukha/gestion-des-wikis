@@ -52,12 +52,19 @@
                             <li>
                                 <a href="dashboard" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                             </li>
+
                         <?php
                         endif;
+                        ?>
+                        <?php
+                        if (isset($_SESSION['id']) && $_SESSION['role'] =="author") :
                         ?>
                         <li>
                             <a href="<?= URL_DIR ?>wikis" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Mywikis</a>
                         </li>
+                        <?php
+                        endif;
+                        ?>
                         <li>
                             <a href="<?= URL_DIR ?>articles" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">wikis</a>
                         </li>

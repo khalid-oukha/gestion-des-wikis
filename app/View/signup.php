@@ -19,36 +19,42 @@
     <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
 
       <!-- <div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert"> -->
-        <?php
-        $errors = $_SESSION['errors'] ?? [];
-        unset($_SESSION['errors']);
-        if (!empty($errors)) {
-          foreach ($errors as $error) {
-            echo '<div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert">';
-            echo "<span class='block text-red-500 sm:inline'><br>
+      <?php
+      $errors = $_SESSION['errors'] ?? [];
+      unset($_SESSION['errors']);
+      if (!empty($errors)) {
+        foreach ($errors as $error) {
+          echo '<div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert">';
+          echo "<span class='block text-red-500 sm:inline'><br>
             $error</span>";
-            echo '</div>';
-          }
+          echo '</div>';
         }
-        ?>
+      }
+      ?>
       <!-- </div> -->
       <h2 class="text-2xl uppercase font-medium mb-1">Sign up</h2>
       <p class="text-gray-600 mb-6 text-sm dark:text-gray-100">Welcome! So good to have you heree!</p>
-      <form action="Signup/registerUser" method="POST">
+      <form class="form" action="Signup/registerUser" method="POST">
         <p class="text-red-500"></p>
+        <span id="uname-message"></span>
+
         <div class="space-y-2">
-          <div><label for="email" class="text-gray-600 mb-2 block dark:text-gray-100 "></label class="dark:text-gray-100">
+          <div>
             Full Name
             <input type="text" name="uname" id="email" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="youremail.@domain.com">
           </div>
         </div>
         <div class="space-y-2">
-          <div><label for="email" class="text-gray-600 mb-2 block dark:text-gray-100 "></label class="dark:text-gray-100">Email address
-            <input type="email" name="email" id="email" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="youremail.@domain.com">
+        <span id="email-message"></span>
+          <div>
+            Email address
+            <input type="text" name="email" id="email" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="youremail.@domain.com">
           </div>
         </div>
         <div class="space-y-2">
-          <div><label for="password" class="text-gray-600 dark:text-gray-100 mb-2 block"></label class="dark:text-gray-100">Password<div class="relative">
+          <div><label for="password" class="text-gray-600 dark:text-gray-100 mb-2 block"></label class="dark:text-gray-100">
+          <span id="Password-message"></span>
+          Password<div class="relative">
               <input type="password" name="password" id="password" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="***********">
               <div class="cursor-pointer absolute inset-y-0 right-0 flex items-center px-8 text-gray-600 border-l border-gray-300">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -61,7 +67,10 @@
           </div>
         </div>
         <div class="space-y-2">
-          <div><label for="birthday" class="text-gray-600 mb-2 block dark:text-gray-100 "></label class="dark:text-gray-100">Birthday<input type="date" name="birthday" id="email" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="">
+          <div><label for="birthday" class="text-gray-600 mb-2 block dark:text-gray-100 "></label class="dark:text-gray-100">
+          <span id="birthday-message"></span>
+          Birthday
+          <input type="date" name="birthday" id="email" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="">
           </div>
         </div>
 
@@ -80,7 +89,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="public/assets/js/navbar.js"></script>
-<script src="public/assets/js/searchByDate.js"></script>
+<script src="public/assets/js/validation.js"></script>
 <script src="public/assets/js/liveSearch.js"></script>
 <script src="public/assets/js/theme.js"></script>
 <script src="public/assets/js/home.js"></script>

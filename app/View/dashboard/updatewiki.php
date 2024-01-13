@@ -36,8 +36,8 @@
                             <h1 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Team Data</h1>
                             <p class="text-gray-600 dark:text-gray-300 mb-6">Here you can add team's informations.</p>
                             <form action="../submitUpdatedData" method="POST">
-                                
-                            <input type="hidden" placeholder="id" name="id" value="<?=$id?>" class="border p-2 rounded w-full">
+
+                                <input type="hidden" placeholder="id" name="id" value="<?= $id ?>" class="border p-2 rounded w-full">
 
                                 <select name="categorie_id" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                     <?php
@@ -47,38 +47,42 @@
                                     }
                                     ?>
                                 </select>
+                                <?php
+                                if (isset($_SESSION['id']) && $_SESSION['role'] == "admin") :
+                                ?>
+                                    <select name="user_id" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
 
-                                <select name="user_id" class="p-2 px-20 mb-2 rounded border dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                        <?php
+                                        foreach ($users as $user) { ?>
+                                            <option value="<?= $user['id'] ?>"><?= $user['full_Name'] ?></option>
                                     <?php
-                                    foreach ($users as $user) { ?>
-                                        <option value="<?= $user['id'] ?>"><?= $user['full_Name'] ?></option>
-                                    <?php
-                                    }
+                                        }
+                                    endif;
                                     ?>
-                                </select>
-                                <div class="mb-4">
-                                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                                    <input type="text" placeholder="your title here" name="title" class="border p-2 rounded w-full">
-                                </div>
-                                <div class="md:grid-cols-2 gap-4 mb-4">
+                                    </select>
+                                    <div class="mb-4">
+                                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                        <input type="text" placeholder="your title here" name="title" class="border p-2 rounded w-full">
+                                    </div>
+                                    <div class="md:grid-cols-2 gap-4 mb-4">
 
-                                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                    <textarea name="description" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                        <textarea name="description" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."><?= $articles[0]->description ?></textarea>
 
-                                </div>
-                                <div class="md:grid-cols-2 gap-4 mb-4">
-                                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">article</label>
-                                    <textarea name="content" id="mytextarea"></textarea>
-                                </div>
-                                <div class="mb-4">
+                                    </div>
+                                    <div class="md:grid-cols-2 gap-4 mb-4">
+                                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">article</label>
+                                        <textarea name="content" id="mytextarea"><?= $articles[0]->content ?></textarea>
+                                    </div>
+                                    <div class="mb-4">
 
-                                    <button type="submit" class="px-4 py-2 bg-primary-100 rounded  text-white hover:bg-blue-600 focus:outline-none transition-colors">
-                                        Confirm And Submit
-                                    </button>
+                                        <button type="submit" class="px-4 py-2 bg-primary-100 rounded  text-white hover:bg-blue-600 focus:outline-none transition-colors">
+                                            Confirm And Submit
+                                        </button>
 
-                                    <button type="button" class="px-4 py-2 bg-orange rounded  text-white hover:bg-blue-600 focus:outline-none transition-colors">
-                                        Cancel
-                                    </button>
+                                        <button type="button" class="px-4 py-2 bg-orange rounded  text-white hover:bg-blue-600 focus:outline-none transition-colors">
+                                            Cancel
+                                        </button>
 
 
                             </form>

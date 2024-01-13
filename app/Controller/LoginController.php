@@ -30,13 +30,14 @@ class LoginController
             if ($pwdCheck) {
 
                 $redirect = URL_DIR . 'home';
+                $redirectDashboard = URL_DIR . 'dashboard';
                 $_SESSION['id'] = $user[0]->id;
                 $_SESSION['full_name'] = $user[0]->full_Name;
                 $_SESSION['email'] = $user[0]->email;
                 $_SESSION['role'] = $user[0]->role;
 
                 if ($_SESSION['role'] == "admin") {
-                    header("Location: $redirect");
+                    header("Location: $redirectDashboard");
                 } else {
                     header("Location: $redirect");
                 }

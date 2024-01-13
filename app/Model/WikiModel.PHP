@@ -101,7 +101,9 @@ class WikiModel extends Crud
         }
     }
 
-
+    public function fetchwikiById($id){
+        return $this->getElementByColumn($id,"wiki","id");
+    }
 
     public function getPublishedWikis()
     {
@@ -221,49 +223,5 @@ class WikiModel extends Crud
         }
     }
 
-    // public function CreateWiki($table, $data, $tags)
-    // {
-    //     // var_dump($data);
-    //     try {
-    //         $this->create($table, $data);
-    //         $wikiId = $this->pdo->lastInsertId();
-    //         $tagIds = [];
-    //         foreach ($tags as $tag) {
-    //             $tag = trim($tag);
-
-    //             // Check if the tag already exists
-    //             $tagExistsQuery = "SELECT id FROM tags WHERE name = :tag";
-    //             $tagStmt = $this->pdo->prepare($tagExistsQuery);
-    //             $tagStmt->bindParam(':tag', $tag);
-    //             $tagStmt->execute();
-    //             $tagResult = $tagStmt->fetch(PDO::FETCH_ASSOC);
-
-    //             if ($tagResult) {
-    //                 // Tag already exists, get its ID
-    //                 $tagIds[] = $tagResult['id'];
-    //             } else {
-    //                 // Tag does not exist, add it to the tags table
-    //                 $addTagQuery = "INSERT INTO tags (name) VALUES (:tag)";
-    //                 $addTagStmt = $this->pdo->prepare($addTagQuery);
-    //                 $addTagStmt->bindParam(':tag', $tag);
-    //                 $addTagStmt->execute();
-
-    //                 // Get the ID of the newly added tag
-    //                 $tagIds[] = $this->pdo->lastInsertId();
-    //             }
-    //         }
-
-    //         // Add wiki-tag relationships
-    //         foreach ($tagIds as $tagId) {
-    //             $addWikiTagQuery = "INSERT INTO wiki_tag (tag_id, wiki_id) VALUES (:tag_id, :wiki_id)";
-    //             $addWikiTagStmt = $this->pdo->prepare($addWikiTagQuery);
-    //             $addWikiTagStmt->bindParam(':tag_id', $tagId);
-    //             $addWikiTagStmt->bindParam(':wiki_id', $wikiId);
-    //             $addWikiTagStmt->execute();
-    //         }
-
-    //     } catch (PDOException $e) {
-    //         echo "Error inserting wiki with tags: " . $e->getMessage();
-    //     }
-    // }
+   
 }

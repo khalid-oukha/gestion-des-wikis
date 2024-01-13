@@ -17,7 +17,7 @@
 
 <div  class="contain py-16">
   <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
-  <div class="bg-red-50 border border-red-500 text-red-500 px-4 py-3 rounded relative text-center" role="alert">
+  <div class=" text-red-500 px-4 py-3 rounded relative text-center" role="alert">
         <?php
         $errors = $_SESSION['errors'] ?? [];
         unset($_SESSION['errors']);
@@ -30,15 +30,19 @@
       </div>
     <h2 class="text-2xl uppercase font-medium mb-1">Login</h2>
     <p class="text-gray-600 mb-6 text-sm dark:text-gray-100">Welcome! So good to have you back!</p>
-    <form action="login/loginHandller" method="POST">
+    <form action="login/loginHandller" class="form" method="POST">
       <p class="text-red-500"></p>
       <div class="space-y-2">
+      <span id="email-message"></span>
+
         <div><label for="email" class="text-gray-600 mb-2 block dark:text-gray-100 "></label class="dark:text-gray-100">Email address
-        <input type="email" name="email" id="email" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="youremail.@domain.com">
+        <input type="text" name="email" id="email" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="youremail.@domain.com">
         </div>
       </div>
       <div class="space-y-2">
-        <div><label for="password" class="text-gray-600 dark:text-gray-100 mb-2 block"></label class="dark:text-gray-100">Password<div class="relative">
+        <div><label for="password" class="text-gray-600 dark:text-gray-100 mb-2 block"></label class="dark:text-gray-100">Password
+        <span id="password-message"></span>
+        <div class="relative">
           <input type="password" name="password" id="password" class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="***********">
             <div
               class="cursor-pointer absolute inset-y-0 right-0 flex items-center px-8 text-gray-600 border-l border-gray-300">
@@ -54,7 +58,7 @@
         </div>
       </div>
       <div class="mt-4">
-        <button type="submit" class="block w-full py-2 text-center text-white bg-teal-500 border border-teal-500 rounded hover:bg-transparent hover:text-teal-500 transition uppercase font-roboto font-medium">Login</button>
+        <button type="submit" id="submitBtn" class="block w-full py-2 text-center text-white bg-teal-500 border border-teal-500 rounded hover:bg-transparent hover:text-teal-500 transition uppercase font-roboto font-medium">Login</button>
         <div class="flex gap-2 pt-5">
           <p class="text-gray-600 text-sm dark:text-gray-100">Don't have an account?</p><a class="text-gray-600 text-sm underline"
             href="signup">Register here</a>
@@ -70,6 +74,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="public/assets/js/navbar.js"></script>
 <script src="public/assets/js/searchByDate.js"></script>
+<script src="public/assets/js/validation.js"></script>
 <script src="public/assets/js/liveSearch.js"></script>
 <script src="public/assets/js/theme.js"></script>
 <script src="public/assets/js/home.js"></script>

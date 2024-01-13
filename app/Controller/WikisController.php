@@ -13,10 +13,11 @@ class WikisController extends Controller
         $article = new WikiModel();
         $articles = $article->fetchAllWikis();
         Controller::GetView("dashboard\wikis", ["articles" => $articles]);
+
     }
     public function addwiki()
     {
-        if (!Controller::isLogedin()) {
+        if (Controller::isLogedin()) {
 
             $article = new WikiModel();
             $categorie = new categorieModel();
@@ -32,12 +33,12 @@ class WikisController extends Controller
 
     public function insertWiki()
     {
-        if (!Controller::isLogedin()) {
+        if (Controller::isLogedin()) {
 
             $article = new WikiModel();
-            // var_dump($_POST);die;
             $article->AddWiki($_POST);
             header("location:\wikis\wikis");
+
         } else {
             Controller::RedirectToNotFound();
         }
@@ -45,14 +46,16 @@ class WikisController extends Controller
 
     public function updateWiki($id)
     {
-        if (!Controller::isLogedin()) {
+        if (Controller::isLogedin()) {
 
             $article = new WikiModel();
             $categorie = new categorieModel();
             $user = new userModel();
             $categories = $categorie->getAllCategories();
             $users = $user->getAllUsers();
-            Controller::GetView("dashboard\updateWiki", ["categories" => $categories, "users" => $users, "id" => $id]);
+            $articles = $article->fetchwikiById($id);
+            Controller::GetView("dashboard\updateWiki", ["categories" => $categories, "users" => $users, "id" => $id, "articles" => $articles]);
+
         } else {
             Controller::RedirectToNotFound();
         }
@@ -60,13 +63,14 @@ class WikisController extends Controller
 
     public function submitUpdatedData()
     {
-        if (!Controller::isLogedin()) {
+        if (Controller::isLogedin()) {
 
             $article = new WikiModel();
             $id = $_POST['id'];
             unset($_POST['id']);
             $article->updateWiki($_POST, $id);
-            header("location:\wikis\dashboard\wikis");
+            header("location:\wikis\wikis");
+
         } else {
             Controller::RedirectToNotFound();
         }
@@ -74,11 +78,12 @@ class WikisController extends Controller
 
     public function deleteWiki($id)
     {
-        if (!Controller::isLogedin()) {
+        if (Controller::isLogedin()) {
 
             $article = new WikiModel();
             $article->deleteWiki($id);
             header("location:\wikis\wikis");
+            
         } else {
             Controller::RedirectToNotFound();
         }
