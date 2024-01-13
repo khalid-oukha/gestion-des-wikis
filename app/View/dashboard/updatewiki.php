@@ -11,11 +11,6 @@
     <script src="https://cdn.tiny.cloud/1/tae69tv15q8646ee9ytsznj2x6mphimtyeq9b9nhu5iyo6jg/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-    <script>
-        tinymce.init({
-            selector: '#mytextarea'
-        });
-    </script>
 
 </head>
 
@@ -72,8 +67,13 @@
                                     </div>
                                     <div class="md:grid-cols-2 gap-4 mb-4">
                                         <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">article</label>
-                                        <textarea name="content" id="mytextarea"><?= $articles[0]->content ?></textarea>
+                                       
+                                        <!-- <textarea name="description" id="message" rows="14" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here...">
+                                        
+                                    </textarea> -->
+                                        <textarea name="content" id="mytextarea"><?=$articles[0]->content ?></textarea>
                                     </div>
+                                    
                                     <div class="mb-4">
 
                                         <button type="submit" class="px-4 py-2 bg-primary-100 rounded  text-white hover:bg-blue-600 focus:outline-none transition-colors">
@@ -97,6 +97,12 @@
     </main>
 
 </body>
+
+<script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
 <script src="../path/to/flowbite/dist/datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 <script src="public/assets/js/navigation.js"></script>
